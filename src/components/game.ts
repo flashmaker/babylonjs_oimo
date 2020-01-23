@@ -68,6 +68,7 @@ export default class Game {
         ground.material = groundMat;
 
         // Light Animation
+        // remove
         let alpha = 0;
         this._scene.onBeforeRenderObservable.add(() => {
             alpha += 0.01;
