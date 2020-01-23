@@ -20,12 +20,19 @@ export default class Game {
     // create environment with some basic webgl elements
     createBasicEnv(): void {
         const sphereCount: number = 20;
+
         // Create Lights
         // new BABYLON.HemisphericLight('hLight', new BABYLON.Vector3(-1, -1, -1), this._scene);
         // const lightPos = new BABYLON.Vector3(5, 5, 5);
         // const spotLight = new BABYLON.SpotLight('sLight', lightPos, new BABYLON.Vector3(0, -1, 0), Math.PI / 2, 20, this._scene);
         // const spotLightMesh = BABYLON.MeshBuilder.CreateSphere('lightMesh', { diameter: 0.2 }, this._scene);
         // spotLightMesh.position = lightPos;
+
+        // physics engine
+
+        // var gravityVector = new BABYLON.Vector3(0, -9.81, 0);
+        //var physicsPlugin = new BABYLON.OimoJSPlugin();
+        // this._scene.enablePhysics(gravityVector, physicsPlugin);
 
         // Create Camera
         this._camera = new BABYLON.ArcRotateCamera(
@@ -40,9 +47,22 @@ export default class Game {
         //this._camera.upperBetaLimit = Math.PI / 2;
         //this._camera.lowerRadiusLimit = 5;
         //this._camera.upperRadiusLimit = 30;
+
+        this._camera.maxZ = 5000;
+        this._camera.lowerRadiusLimit = 120;
+        this._camera.upperRadiusLimit = 430;
+        this._camera.lowerAlphaLimit = -Math.PI / 3;
+        this._camera.upperAlphaLimit = Math.PI / 3;
+        this._camera.lowerBetaLimit = Math.PI / 2;
+        this._camera.upperBetaLimit = Math.PI / 2;
+
         this._camera.attachControl(this._canvas, false);
 
         //this._scene .activeCamera.panningSensibility = 0;
+
+        
+
+        //this._scene.enablePhysics(new BABYLON.Vector3(0, -10, 0), new BABYLON.OimoJSPlugin());
 
 
         light.position = new BABYLON.Vector3(20, 150, 70);
