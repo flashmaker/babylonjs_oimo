@@ -4,6 +4,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const devMode = process.env.NODE_ENV === 'development';
+const webpack = require('webpack');
 
 module.exports = {
 	entry: {
@@ -78,7 +79,10 @@ module.exports = {
 				from: path.resolve(__dirname, '../src/assets'),
 				to: 'assets'
 			}
-		])
+		]),
+		new webpack.ProvidePlugin({
+			OIMO: 'oimo'
+		}),
 	],
 	optimization: {
 		namedChunks: true,
@@ -96,8 +100,8 @@ module.exports = {
 		}
 	},
 	externals: {
-		"oimo": true,
-		"cannon": true,
+		//"oimo": true,
+		//"cannon": true,
 		"earcut": true
 	}
 };

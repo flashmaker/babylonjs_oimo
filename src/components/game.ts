@@ -28,11 +28,6 @@ export default class Game {
         // const spotLightMesh = BABYLON.MeshBuilder.CreateSphere('lightMesh', { diameter: 0.2 }, this._scene);
         // spotLightMesh.position = lightPos;
 
-        // physics engine
-
-        // var gravityVector = new BABYLON.Vector3(0, -9.81, 0);
-        //var physicsPlugin = new BABYLON.OimoJSPlugin();
-        // this._scene.enablePhysics(gravityVector, physicsPlugin);
 
         // Create Camera
         this._camera = new BABYLON.ArcRotateCamera(
@@ -60,9 +55,15 @@ export default class Game {
 
         //this._scene .activeCamera.panningSensibility = 0;
 
-        
 
-        //this._scene.enablePhysics(new BABYLON.Vector3(0, -10, 0), new BABYLON.OimoJSPlugin());
+
+        // physics engine
+
+        // var gravityVector = new BABYLON.Vector3(0, -9.81, 0);
+        //var physicsPlugin = new BABYLON.OimoJSPlugin();
+        // this._scene.enablePhysics(gravityVector, physicsPlugin);
+
+        this._scene.enablePhysics(new BABYLON.Vector3(0, -10, 0), new BABYLON.OimoJSPlugin());
 
 
         light.position = new BABYLON.Vector3(20, 150, 70);
