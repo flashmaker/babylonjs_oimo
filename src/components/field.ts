@@ -11,7 +11,7 @@ import {
 import { boxesParams } from "../configs/fieldConfig";
 
 export const createField = (scene: Scene): void => {
-    // boxes color
+    // TODO move to config boxes color
     const materialAmiga = new StandardMaterial("amiga", scene);
     materialAmiga.emissiveColor = new Color3(0.5, 0.5, 0.5);
 

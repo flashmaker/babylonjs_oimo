@@ -1,9 +1,9 @@
 // ball size for game level
-export const ballSize: number[] = [0.3, 0.25, 0.2, 0.15];
+export const ballsSize: number[] = [0.3, 0.25, 0.2, 0.15];
 
-// the number of balls at the start of the game 
-export const initBallCount: number = 10;
+// ball mass for game level
+export const ballsMass: number[] = [1, 1.2, 1.4, 1.6];
 
 // multiplier balls for the level of the game
-export const ballLevelMultiplier: number[] = [1, 10, 15, 20];
+export const ballLevelMultiplier: number[] = [10, 10, 15, 20];
 
