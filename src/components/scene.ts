@@ -26,8 +26,8 @@ export const createEngine = (): Engine => new Engine(canvas, true, {}, true);
 export const createScene = (engine: Engine): Scene => {
     const scene = new Scene(engine);
     new FPSMonitor(scene);
-    // TODO add SceneOptimizer
-    // TODO add light
+    // TODO: add SceneOptimizer
+    // TODO: add light
     scene.clearColor = new Color4(0.5, 0.8, 0.5, 1);
     const camera = addCamera(scene, canvas);
 

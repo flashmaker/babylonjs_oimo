@@ -9,9 +9,9 @@ let scene: Scene, engine: Engine, balls: Array<Ball>, gates: Array<Gate>;
 export const startGame = (): void => {
     engine = createEngine();
     scene = createScene(engine);
-    // TODO createMaterials
+    // TODO: createMaterials
     createField(scene);
-    // TODO set balls position
+    // TODO: set balls position
     balls = addBalls(scene, 0, Vector3.Zero());
     gates = createGates(scene);
 

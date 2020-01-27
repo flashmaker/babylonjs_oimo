@@ -36,11 +36,11 @@ export const addBalls = (scene: Scene, level: number, position: Vector3): Array<
     let ballCount: number = ballLevelMultiplier[level];
 
 
-    // TODO move to config ball color
+    // TODO: move to config ball color
     const material = new StandardMaterial("amiga", scene);
     material.emissiveColor = new Color3(0.5, 0.5, 0.5);
 
-    // TODO remove set position here or add randomizer func
+    // TODO: remove set position here or add randomizer func
     position.y = 3;
     position.x = 1;
     if (ballCount > 0) {
