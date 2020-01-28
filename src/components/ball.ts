@@ -38,7 +38,7 @@ export const addBalls = (scene: Scene, level: number, position: Vector3): Array<
     let ballSize = ballsSize[level];
     let ballMass = ballsMass[level];
     let ballCount: number = ballLevelMultiplier[level];
-    let currentBall = 0;
+    let i = 0;
 
     if (ballCount > 0) {
         do {
@@ -47,9 +47,9 @@ export const addBalls = (scene: Scene, level: number, position: Vector3): Array<
                     ball = new Ball(scene, randPosition(position), ballSize, ballMass, level);
                     balls.push(ball);
                 }, 5 * (ind + 1));
-            })(currentBall);
-            currentBall++;
-        } while (currentBall < ballCount);
+            })(i);
+            i++;
+        } while (i < ballCount);
     }
     return balls;
 }

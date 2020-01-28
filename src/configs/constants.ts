@@ -1,0 +1,1 @@
+const BOX_MATERIAL = 'boxMaterial';
