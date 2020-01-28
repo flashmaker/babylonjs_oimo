@@ -9,15 +9,15 @@ export const addCamera = (scene: Scene, canvas: HTMLCanvasElement): void => {
         'arcam',
         0,
         Math.PI / 2,
-        100,
+        20,
         Vector3.Zero(),
         scene
     );
 
-    camera.lowerRadiusLimit = 120;
-    camera.upperRadiusLimit = 430;
-    camera.lowerAlphaLimit = -Math.PI / 3;
-    camera.upperAlphaLimit = Math.PI / 3;
+    camera.lowerRadiusLimit = 20;
+    camera.upperRadiusLimit = 20;
+    camera.lowerAlphaLimit = -Math.PI / 4;
+    camera.upperAlphaLimit = Math.PI / 4;
     camera.lowerBetaLimit = Math.PI / 2;
     camera.upperBetaLimit = Math.PI / 2;
 

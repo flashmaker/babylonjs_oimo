@@ -1,5 +1,6 @@
 import { Scene, Engine, Vector3 } from "@babylonjs/core";
 import { createScene, createEngine } from "./scene";
+import { createMaterials } from "./materials";
 import { createField } from "./field";
 import { Ball, addBalls } from "./ball";
 import { Gate, createGates } from "./gate";
@@ -9,10 +10,10 @@ let scene: Scene, engine: Engine, balls: Array<Ball>, gates: Array<Gate>;
 export const startGame = (): void => {
     engine = createEngine();
     scene = createScene(engine);
-    // TODO: createMaterials
+    createMaterials(scene);
     createField(scene);
     // TODO: set balls position
-    balls = addBalls(scene, 0, Vector3.Zero());
+    balls = addBalls(scene, 0, new Vector3(0.5, 4, -2));
     gates = createGates(scene);
 
     registerRenderer(scene);
