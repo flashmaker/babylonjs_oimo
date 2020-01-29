@@ -15,7 +15,6 @@ export class Gate {
     constructor(scene: Scene, position: Vector3, multiplier: number) {
         this.multiplier = multiplier;
 
-        // TODO: create gate
         this.gate = MeshBuilder.CreateCylinder(GATE_MESH, { height: 1.2, diameter: 0.7, tessellation: 16 }, scene);
         this.gate.material = scene.getMaterialByID(GATE_MATERIAL);
         this.gate.position = new Vector3(position.x, position.y, position.z);
@@ -23,7 +22,6 @@ export class Gate {
     }
 }
 
-// TODO: create gates
 export const createGates = (scene: Scene): Array<Gate> => {
     let gates: Array<Gate> = [];
     let gate: Gate;

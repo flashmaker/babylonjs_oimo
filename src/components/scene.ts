@@ -6,7 +6,8 @@ import {
     OimoJSPlugin,
     HemisphericLight,
     Vector2,
-    Nullable
+    Nullable,
+    ArcRotateCamera
 } from "@babylonjs/core";
 import {
     Control
@@ -24,20 +25,22 @@ const addLights = (scene: Scene): void => {
     var light = new HemisphericLight(HEMISPHERIC_LIGHT, new Vector3(1, 0.5, 0), scene);
     light.intensity = 0.5;
 }
-
+let scene: Scene;
+let camera: ArcRotateCamera;
 let isDown: Boolean = false;
 let controlRect: Nullable<Control>;
 let downStartX: number = 0;
 let downWidthX: number = 0;
+let downCameraAlpha: number = 0;
 
 export const createEngine = (): Engine => new Engine(canvas, true, {}, true);
 
 export const createScene = (engine: Engine): Scene => {
-    const scene = new Scene(engine);
+    scene = new Scene(engine);
     new FPSMonitor(scene);
     // TODO: add SceneOptimizer
     scene.clearColor = new Color4(0.5, 0.8, 0.5, 1);
-    const camera = addCamera(scene, canvas);
+    camera = addCamera(scene, canvas);
     const advancedTexture = createGUI(scene);
     controlRect = advancedTexture._rootContainer.getChildByName(CONTROL_RECT);
 
@@ -54,13 +57,35 @@ export const createScene = (engine: Engine): Scene => {
     return scene;
 };
 
+const calculateDelta = (moveX: number): number => {
+    let delta: number = downStartX - moveX;
+    return delta;
+}
+
+const calculateCameraAlpha = (delta: number): void => {
+    // TODO: optimaze logic
+    const width = 200;
+    const gravityMultyplier = 10;
+    const lowerAlphaLimit: number = -Math.PI / 4;
+    const upperAlphaLimit: number = Math.PI / 4;
+
+    let angelPointer = delta / width;// > 1 ? 1 : delta / width < - 1 ? -1 : delta / width;
+    let deltaAlpha = angelPointer * upperAlphaLimit + downCameraAlpha;
+    let newAlpha = angelPointer * upperAlphaLimit + downCameraAlpha > Math.PI / 4
+        ? Math.PI / 4 : angelPointer * upperAlphaLimit + downCameraAlpha < - Math.PI / 4
+            ? -Math.PI / 4 : angelPointer * upperAlphaLimit + downCameraAlpha;
+    camera.alpha = newAlpha;
+    let gravityX = - gravityMultyplier * newAlpha;
+    
+    
+    scene.getPhysicsEngine()?.setGravity(new Vector3(0, -20, gravityX));
+}
 
 const onDown = (coordinates: Vector2): void => {
     isDown = true;
     downStartX = coordinates.x;
     downWidthX = canvas.width;
-
-    console.log("downStartX", downStartX)
+    downCameraAlpha = camera.alpha;
 }
 
 const onUp = (coordinates: Vector2): void => {
@@ -69,7 +94,8 @@ const onUp = (coordinates: Vector2): void => {
 
 const onMove = (coordinates: Vector2): void => {
     if (isDown) {
-        //console.log("Move", coordinates)
+        const delta = calculateDelta(coordinates.x);
+        calculateCameraAlpha(delta);
     }
 }
 
