@@ -1,7 +1,7 @@
 import {
-    Scene,
-    ArcRotateCamera,
-    Vector3
+  Scene,
+  ArcRotateCamera,
+  Vector3,
 } from "@babylonjs/core";
 import { MAIN_CAMERA } from "../configs/constants";
 

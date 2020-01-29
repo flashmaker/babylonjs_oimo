@@ -1,7 +1,7 @@
 import {
-    Scene,
-    StandardMaterial,
-    Color3
+  Scene,
+  StandardMaterial,
+  Color3,
 } from "@babylonjs/core";
 import { BALL_MATERIAL, FIELD_MATERIAL, GATE_MATERIAL, TRANSPARENT_MATERIAL } from "../configs/constants";
 

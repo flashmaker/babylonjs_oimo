@@ -1,9 +1,9 @@
 import {
-    Scene,
-    Vector3,
-    MeshBuilder,
-    PhysicsImpostor,
-    Mesh
+  Scene,
+  Vector3,
+  MeshBuilder,
+  PhysicsImpostor,
+  Mesh,
 } from "@babylonjs/core";
 import { boxesParams } from "../configs/fieldConfig";
 import { FIELD_MATERIAL, BOX_MESH } from "../configs/constants";
@@ -24,5 +24,6 @@ export const createField = (scene: Scene): void => {
         } while (i < boxesCount);
     }
 
-    // TODO: add arc processor
+  // TODO: add arc processor
 }
+;

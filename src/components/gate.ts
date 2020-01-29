@@ -1,19 +1,19 @@
 import {
-    Mesh,
-    Scene,
-    Vector3,
-    MeshBuilder
+  Mesh,
+  Scene,
+  Vector3,
+  MeshBuilder,
 } from "@babylonjs/core";
 import { gateMultipliers } from "../configs/gateConfig";
 import { gatePositions } from "../configs/gateConfig";
 import { GATE_MATERIAL, GATE_MESH } from "../configs/constants";
 
 export class Gate {
-    public multiplier: number = 0;
-    public gate: Mesh;
+  public multiplier: number = 0;
+  public gate: Mesh;
 
-    constructor(scene: Scene, position: Vector3, multiplier: number) {
-        this.multiplier = multiplier;
+  constructor(scene: Scene, position: Vector3, multiplier: number) {
+    this.multiplier = multiplier;
 
         this.gate = MeshBuilder.CreateCylinder(GATE_MESH, { height: 1.2, diameter: 0.7, tessellation: 16 }, scene);
         this.gate.material = scene.getMaterialByID(GATE_MATERIAL);
@@ -35,5 +35,5 @@ export const createGates = (scene: Scene): Array<Gate> => {
         } while (i < gateCount);
     }
 
-    return gates;
-}
+  return gates;
+};
