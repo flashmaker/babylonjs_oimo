@@ -10,3 +10,5 @@ export const GATE_MESH: string = 'gateMesh';
 export const MAIN_CAMERA: string = 'mainCamera';
 export const HEMISPHERIC_LIGHT: string = 'hemisphericLight';
 
+export const CONTROL_RECT: string = 'controlRect';
+
