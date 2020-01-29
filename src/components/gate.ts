@@ -6,6 +6,7 @@ import {
 } from "@babylonjs/core";
 import { gateMultipliers } from "../configs/gateConfig";
 import { gatePositions } from "../configs/gateConfig";
+import { GATE_MATERIAL, GATE_MESH } from "../configs/constants";
 
 export class Gate {
     public multiplier: number = 0;
@@ -15,10 +16,10 @@ export class Gate {
         this.multiplier = multiplier;
 
         // TODO: create gate
-        this.gate = MeshBuilder.CreateCylinder("gate", { height: 1.2, diameter: 0.7, tessellation: 16 }, scene);
-        this.gate.material = scene.getMaterialByID('ballMaterial');
+        this.gate = MeshBuilder.CreateCylinder(GATE_MESH, { height: 1.2, diameter: 0.7, tessellation: 16 }, scene);
+        this.gate.material = scene.getMaterialByID(GATE_MATERIAL);
         this.gate.position = new Vector3(position.x, position.y, position.z);
-        this.gate.rotation.z  =  Math.PI/2;
+        this.gate.rotation.z = Math.PI / 2;
     }
 }
 

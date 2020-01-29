@@ -21,7 +21,6 @@ export const startGame = (): void => {
     doRender();
 }
 
-
 // do render loop and auto-resize
 const doRender = (): void => {
     engine.runRenderLoop(() => {
