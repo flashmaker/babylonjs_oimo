@@ -4,21 +4,20 @@ import {
   Vector3,
   MeshBuilder,
 } from "@babylonjs/core";
-import { gateMultipliers } from "../configs/gateConfig";
-import { gatePositions } from "../configs/gateConfig";
+import { gateMultipliers, gatePositions } from "../configs/gateConfig";
 import { GATE_MATERIAL, GATE_MESH } from "../configs/constants";
 
 export class Gate {
   public multiplier: number = 0;
-  public gate: Mesh;
+  public mesh: Mesh;
 
   constructor(scene: Scene, position: Vector3, multiplier: number) {
     this.multiplier = multiplier;
 
-        this.gate = MeshBuilder.CreateCylinder(GATE_MESH, { height: 1.2, diameter: 0.7, tessellation: 16 }, scene);
-        this.gate.material = scene.getMaterialByID(GATE_MATERIAL);
-        this.gate.position = new Vector3(position.x, position.y, position.z);
-        this.gate.rotation.z = Math.PI / 2;
+        this.mesh = MeshBuilder.CreateCylinder(GATE_MESH, { height: 1.2, diameter: 0.7, tessellation: 16 }, scene);
+        this.mesh.material = scene.getMaterialByID(GATE_MATERIAL);
+        this.mesh.position = new Vector3(position.x, position.y, position.z);
+        this.mesh.rotation.z = Math.PI / 2;
     }
 }
 

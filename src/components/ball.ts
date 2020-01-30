@@ -8,20 +8,20 @@ import { BALL_MATERIAL, BALL_MESH } from "../configs/constants";
 import { ballsSize, ballsMass, ballLevelMultiplier, positionDeviation } from "../configs/ballConfig";
 
 export class Ball {
-    public lastMultiplier: number = 0;
-    public ball: Mesh;
+    public lastGate: number = 0;
+    public mesh: Mesh;
 
-    constructor(scene: Scene, position: Vector3, size: number, mass: number, lastMultiplier: number = 0) {
-        this.lastMultiplier = lastMultiplier;
+    constructor(scene: Scene, position: Vector3, size: number, mass: number, lastGate: number = 0) {
+        this.lastGate = lastGate;
 
-        this.ball = Mesh.CreateSphere(BALL_MESH, 16, size, scene);
-        this.ball.material = scene.getMaterialByID(BALL_MATERIAL);
-        this.ball.position = new Vector3(position.x, position.y, position.z);
-        this.ball.physicsImpostor = new PhysicsImpostor(this.ball, PhysicsImpostor.SphereImpostor, { mass: mass }, scene);
+        this.mesh = Mesh.CreateSphere(BALL_MESH, 16, size, scene);
+        this.mesh.material = scene.getMaterialByID(BALL_MATERIAL);
+        this.mesh.position = new Vector3(position.x, position.y, position.z);
+        this.mesh.physicsImpostor = new PhysicsImpostor(this.mesh, PhysicsImpostor.SphereImpostor, { mass: mass }, scene);
     }
 
     destroy(): void {
-        this.ball.dispose();
+        this.mesh.dispose();
     }
 }
 
@@ -33,8 +33,8 @@ const randPosition = (position: Vector3): Vector3 => {
     );
 };
 
-export const addBalls = (scene: Scene, level: number, position: Vector3): Ball[] => {
-    const balls: Ball[] = [];
+export const addBalls = (scene: Scene, ballsArray:Ball[], level: number, position: Vector3): void => {
+    //const balls: Ball[] = [];
     let ball: Ball;
     const ballSize = ballsSize[level];
     const ballMass = ballsMass[level];
@@ -45,9 +45,9 @@ export const addBalls = (scene: Scene, level: number, position: Vector3): Ball[]
         do {
             setTimeout(() => {
                 ball = new Ball(scene, randPosition(position), ballSize, ballMass, level);
-                balls.push(ball);
+                ballsArray.push(ball);
             }, 5 * (i++));
         } while (i < ballCount);
     }
-    return balls;
+    //return balls;
 }
