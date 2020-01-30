@@ -6,10 +6,10 @@ import {
     Control,
     Rectangle
 } from "@babylonjs/gui";
-import { CONTROL_RECT } from "../configs/constants";
+import { GUI_NAME, CONTROL_RECT } from "../configs/constants";
 
 export const createGUI = (scene: Scene): AdvancedDynamicTexture => {
-    let advancedTexture = AdvancedDynamicTexture.CreateFullscreenUI('UI', true, scene);
+    let advancedTexture = AdvancedDynamicTexture.CreateFullscreenUI(GUI_NAME, true, scene);
     let controlRect = new Rectangle(CONTROL_RECT);
     controlRect.width = 1;
     controlRect.height = 1;
