@@ -59,7 +59,7 @@ const checkCollisions = () => {
           do {
             currentGate = gates[ballTargetGate[j]];
             if (currentGate.mesh.intersectsMesh(currentBall.mesh, true)) {
-              addBalls(scene, balls, currentBall.lastGate + 1, gatePositions[ballTargetGate[j]]);
+              addBalls(scene, balls, currentBall.lastGate + 1, currentBall.mesh.getAbsolutePosition()); //  gatePositions[ballTargetGate[j]]
               currentBall.destroy();
               balls.splice(i, 1);
               i--;
