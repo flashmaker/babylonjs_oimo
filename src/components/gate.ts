@@ -4,6 +4,9 @@ import {
   Vector3,
   MeshBuilder,
   Color4,
+  StandardMaterial,
+  Texture,
+  Vector4,
 } from "@babylonjs/core";
 import { gateMultipliers, gatePositions } from "../configs/gateConfig";
 import { GATE_MATERIAL, TRANSPARENT_MATERIAL, GATE_MESH, GATE_СYLINDER } from "../configs/constants";
@@ -16,11 +19,18 @@ export class Gate {
   constructor(scene: Scene, position: Vector3, multiplier: number) {
     this.multiplier = multiplier;
 
-    var faceColors = [];
-    faceColors[0] = new Color4(0.5, 0.5, 0.5, 1)
+    // TODO: set new material
+    let faceMaterial = new StandardMaterial("material", scene);
+    faceMaterial.diffuseTexture = new Texture("../assets/textures/gate_4x.jpg", scene)
+  
+    var faceUV = [];
+    faceUV[0] = new Vector4(0, 1, 1, 0);
+    faceUV[1] = new Vector4(0, 0, 0, 0);
+    faceUV[2] = new Vector4(0, 0, 0,0);
 
-    this.сylinder = MeshBuilder.CreateCylinder(GATE_СYLINDER, { height: 1.2, diameter: 0.7, tessellation: 16 }, scene);
-    this.сylinder.material = scene.getMaterialByID(GATE_MATERIAL);
+    this.сylinder = MeshBuilder.CreateCylinder(GATE_СYLINDER, { height: 1.2, diameter: 0.7, tessellation: 16, faceUV: faceUV }, scene);
+    //this.сylinder.material = scene.getMaterialByID(GATE_MATERIAL);
+   this.сylinder.material = faceMaterial;
     this.сylinder.position = new Vector3(position.x, position.y, position.z);
     this.сylinder.rotation.x = Math.PI / 2;
 
@@ -43,6 +53,37 @@ export const createGates = (scene: Scene): Array<Gate> => {
       i++;
     } while (i < gateCount);
   }
+
+
+
+
+
+  // TODO: REMOVE TEST
+  var cld: Mesh;
+
+  var cldMaterial = new StandardMaterial("material", scene);
+  cldMaterial.diffuseTexture = new Texture("../assets/textures/gate_4x.jpg", scene)
+
+  var faceUV = [];
+  faceUV[0] = new Vector4(0, 1, 1, 0);
+  faceUV[1] = new Vector4(0, 0, 0.5, 1);
+  faceUV[2] = new Vector4(0, 0, 1, 1);
+
+
+
+  var faceColors = new Array(3);
+  faceColors[0] = new Color4(1, 0, 0, 1);
+  faceColors[1] = new Color4(0, 1, 0, 1);
+  faceColors[2] = new Color4(0, 0, 1, 1);
+
+  cld = MeshBuilder.CreateCylinder("test", { height: 8, diameter: 3, tessellation: 16, faceUV: faceUV, faceColors: faceColors}, scene);
+  cld.position = new Vector3(5, 0, 0);
+  cld.rotation.x = Math.PI / 2;
+  cld.material = cldMaterial;
+
+// END REMOVE TEST
+
+
 
   return gates;
 };
