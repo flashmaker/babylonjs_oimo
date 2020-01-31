@@ -34,7 +34,6 @@ const randPosition = (position: Vector3): Vector3 => {
 };
 
 export const addBalls = (scene: Scene, ballsArray:Ball[], level: number, position: Vector3): void => {
-    //const balls: Ball[] = [];
     let ball: Ball;
     const ballSize = ballsSize[level];
     const ballMass = ballsMass[level];
@@ -49,5 +48,4 @@ export const addBalls = (scene: Scene, ballsArray:Ball[], level: number, positio
             }, 5 * (i++));
         } while (i < ballCount);
     }
-    //return balls;
 }

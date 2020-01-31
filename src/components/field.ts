@@ -26,4 +26,3 @@ export const createField = (scene: Scene): void => {
 
   // TODO: add arc processor
 }
-;

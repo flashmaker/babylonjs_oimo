@@ -16,7 +16,7 @@ import FPSMonitor from '../libs/fpsMonitor';
 import { HEMISPHERIC_LIGHT, CONTROL_RECT } from "../configs/constants";
 import { addCamera } from "./camera";
 import { createGUI } from "./gui";
-import { lowerAlphaLimit, upperAlphaLimit, gravityMultyplier } from "../configs/cameraConfig";
+import { lowerAlphaLimit, upperAlphaLimit, gravityAngleCorrection, gravityMultyplier } from "../configs/cameraConfig";
 
 const canvas = document.getElementById("renderCanvas") as HTMLCanvasElement;
 const physics = new OimoJSPlugin();
@@ -65,7 +65,7 @@ export const createScene = (engine: Engine): Scene => {
 
         controlRect.onPointerMoveObservable.add((coordinates: Vector2) => {
             if (isDown) {
-                const delta = downStartX - coordinates.x;
+                const delta = coordinates.x - downStartX;
                 // TODO: analyze width
                 const width = 200;
 
@@ -74,9 +74,10 @@ export const createScene = (engine: Engine): Scene => {
                 let newAlpha = deltaAlpha > upperAlphaLimit
                     ? upperAlphaLimit : deltaAlpha < lowerAlphaLimit
                         ? lowerAlphaLimit : deltaAlpha;
+
                 camera.alpha = newAlpha;
-                let gravityX = - gravityMultyplier * newAlpha;
-                scene.getPhysicsEngine()?.setGravity(new Vector3(0, -20, gravityX));
+                let gravityX = - gravityMultyplier * (newAlpha + gravityAngleCorrection);
+                scene.getPhysicsEngine()?.setGravity(new Vector3(gravityX, -20, 0));
             }
         })
     }

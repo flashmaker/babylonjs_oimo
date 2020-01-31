@@ -6,6 +6,7 @@ export const TRANSPARENT_MATERIAL: string = 'transparentMaterial';
 export const BALL_MESH: string = 'ball';
 export const BOX_MESH: string = 'boxMesh';
 export const GATE_MESH: string = 'gateMesh';
+export const GATE_СYLINDER: string = 'gateсylinder';
 
 export const MAIN_CAMERA: string = 'mainCamera';
 export const HEMISPHERIC_LIGHT: string = 'hemisphericLight';

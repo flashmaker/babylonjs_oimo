@@ -3,51 +3,31 @@ import {
   Scene,
   Vector3,
   MeshBuilder,
-  StandardMaterial,
-  Texture,
-  Vector4,
   Color4,
 } from "@babylonjs/core";
 import { gateMultipliers, gatePositions } from "../configs/gateConfig";
-import { GATE_MATERIAL, GATE_MESH } from "../configs/constants";
+import { GATE_MATERIAL, TRANSPARENT_MATERIAL, GATE_MESH, GATE_СYLINDER } from "../configs/constants";
 
 export class Gate {
   public multiplier: number = 0;
+  public сylinder: Mesh;
   public mesh: Mesh;
 
   constructor(scene: Scene, position: Vector3, multiplier: number) {
     this.multiplier = multiplier;
 
-
-    // var canMaterial = new StandardMaterial("material", scene);
-    // canMaterial.diffuseTexture = new Texture("../assets/textures/gate5x.png", scene)
-
-    // var faceUV = [];
-    // faceUV[0] = new Vector4(0, 0, 0, 0);
-    // faceUV[1] = new Vector4(1, 0, 0.32, 1);
-    // faceUV[2] = new Vector4(0, 0, 0.25, 1);
-
-
-
     var faceColors = [];
     faceColors[0] = new Color4(0.5, 0.5, 0.5, 1)
 
-    this.mesh = MeshBuilder.CreateCylinder(GATE_MESH, { height: 1.2, diameter: 0.7, tessellation: 16}, scene);
-    this.mesh.material = scene.getMaterialByID(GATE_MATERIAL);
-    this.mesh.position = new Vector3(position.x, position.y, position.z);
-    this.mesh.rotation.z = Math.PI / 2;
+    this.сylinder = MeshBuilder.CreateCylinder(GATE_СYLINDER, { height: 1.2, diameter: 0.7, tessellation: 16 }, scene);
+    this.сylinder.material = scene.getMaterialByID(GATE_MATERIAL);
+    this.сylinder.position = new Vector3(position.x, position.y, position.z);
+    this.сylinder.rotation.x = Math.PI / 2;
 
-    var plane = MeshBuilder.CreatePlane("plane", {height:2, width: 1}, scene);
-
-
-
-
-    //var can = MeshBuilder.CreateCylinder("can", { height: 1.16, faceUV: faceUV, faceColors: faceColors }, scene);
-    //this.mesh.material = canMaterial;
-
-
-
-
+    this.mesh = MeshBuilder.CreatePlane(GATE_MESH, { height: 0.5, width: 1 }, scene);
+    this.mesh.material = scene.getMaterialByID(TRANSPARENT_MATERIAL);
+    this.mesh.position = new Vector3(position.x, position.y - 0.25, position.z);
+    this.mesh.rotation.x = Math.PI / 2;
   }
 }
 

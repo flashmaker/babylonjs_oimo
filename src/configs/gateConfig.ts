@@ -9,13 +9,13 @@ export const gateSizes: Array<Vector3> = [
 ];
 
 // gate's position
-// TODO:: add gate's position z,y,x
+// TODO:: add gate's position x,y,z
 export const gatePositions: Array<Vector3> = [
     //new Vector3(0, 4, -2),
-    new Vector3(0, 1.75, 1.5),
-    new Vector3(0, -1.25, -1.5),
-    new Vector3(0, -1.25, 1.5)
+    new Vector3(1.5, 1.75, 0),
+    new Vector3(-1.5, -1.25, 0),
+    new Vector3(1.5, -1.25, 0)
 ];
 
 // map of the gates
-export const gatesMap: number[][] = [[0], [1,2]];
+export const gatesMap: number[][] = [[0], [1, 2]];

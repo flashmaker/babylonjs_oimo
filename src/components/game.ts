@@ -16,10 +16,9 @@ export const startGame = (): void => {
   scene = createScene(engine);
   createMaterials(scene);
   createField(scene);
-  // TODO: set balls position
+  // TODO: set ball emmiter position
   gates = createGates(scene);
-  addBalls(scene, balls, 0, new Vector3(0.5, 4, -2));
-
+  addBalls(scene, balls, 0, new Vector3(-2, 4, 0));
 
   registerRenderer(scene);
 
@@ -59,7 +58,7 @@ const checkCollisions = () => {
           do {
             currentGate = gates[ballTargetGate[j]];
             if (currentGate.mesh.intersectsMesh(currentBall.mesh, true)) {
-              addBalls(scene, balls, currentBall.lastGate + 1, currentBall.mesh.getAbsolutePosition()); //  gatePositions[ballTargetGate[j]]
+              addBalls(scene, balls, currentBall.lastGate + 1, currentBall.mesh.getAbsolutePosition());
               currentBall.destroy();
               balls.splice(i, 1);
               i--;
