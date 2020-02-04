@@ -47,7 +47,7 @@ export const createScene = (engine: Engine): Scene => {
     scene.enablePhysics(new Vector3(0, -20, 0), physics);
     physics.setTimeStep(1 / 60);
 
-    const advancedTexture = createGUI(scene);
+    const advancedTexture = createGUI();
     controlRect = advancedTexture._rootContainer.getChildByName(CONTROL_RECT);
 
     if (controlRect) {
